@@ -35,13 +35,7 @@ public class Dice {
 	
 	public int compareDice(Dice other)
 	{
-		if( this.value > other.getValue() ) {
-			return 1;
-		}
-		else if( this.value == other.getValue() ) {
-			return 0;
-		}
-		return -1;
+		return this.getValue() - other.getValue();
 	}
 	
 	public String printFirst() {

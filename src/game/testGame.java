@@ -37,7 +37,7 @@ public class testGame {
 		p2.getADice(2).setValue(5);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {5, 5, 5} and {5, 5, 5}, expecting 0(draw).", 0, p1.compareHands(p2));
+		assertTrue("Testing two Players with {5, 5, 5} and {5, 5, 5}, expecting x == 0 (game is a draw).", (p1.compareHands(p2) == 0));
 	
 		p1.getADice(0).setValue(5);
 		p1.getADice(1).setValue(5);
@@ -49,7 +49,7 @@ public class testGame {
 		p2.getADice(2).setValue(4);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {5, 5, 5} and {4, 4, 4}, expecting 1(player 1 wins).", 1, p1.compareHands(p2));
+		assertTrue("Testing two Players with {5, 5, 5} and {4, 4, 4}, expecting x > 0. (player 1 wins).", p1.compareHands(p2) > 0);
 		
 		p1.getADice(0).setValue(4);
 		p1.getADice(1).setValue(4);
@@ -61,7 +61,7 @@ public class testGame {
 		p2.getADice(2).setValue(5);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {4, 4, 4} and {5, 5, 5}, expecting -1(player 2 wins).", -1, p1.compareHands(p2));
+		assertTrue("Testing two Players with {4, 4, 4} and {5, 5, 5}, expecting x <= -1(player 2 wins).",  p1.compareHands(p2) < 0);
 		
 		p1.getADice(0).setValue(5);
 		p1.getADice(1).setValue(5);
@@ -77,7 +77,7 @@ public class testGame {
 		p2.getADice(2).setValue(6);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {5, 5, 6} and {5, 5, 6}, expecting 0(draw).", 0, p1.compareHands(p2));
+		assertTrue("Testing two Players with {5, 5, 6} and {5, 5, 6}, expecting x == 0(draw).", p1.compareHands(p2) == 0);
 	
 		p1.getADice(0).setValue(5);
 		p1.getADice(1).setValue(5);
@@ -89,7 +89,7 @@ public class testGame {
 		p2.getADice(2).setValue(4);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {5, 5, 6} and {5, 5, 4}, expecting 1(player 1 wins).", 1, p1.compareHands(p2));
+		assertTrue("Testing two Players with {5, 5, 6} and {5, 5, 4}, expecting x >= 1(player 1 wins).", 1 <= p1.compareHands(p2));
 		
 		p1.getADice(0).setValue(5);
 		p1.getADice(1).setValue(5);
@@ -101,7 +101,7 @@ public class testGame {
 		p2.getADice(2).setValue(6);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {5, 5, 4} and {5, 5, 6}, expecting -1(player 2 wins).", -1, p1.compareHands(p2));
+		assertTrue("Testing two Players with {5, 5, 4} and {5, 5, 6}, expecting x <= -1(player 2 wins).", -1 >= p1.compareHands(p2));
 		
 		p1.getADice(0).setValue(5);
 		p1.getADice(1).setValue(5);
@@ -113,7 +113,7 @@ public class testGame {
 		p2.getADice(2).setValue(6);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {5, 5, 6} and {4, 4, 6}, expecting 1(player 1 wins).", 1, p1.compareHands(p2));
+		assertTrue("Testing two Players with {5, 5, 6} and {4, 4, 6}, expecting x >= 1(player 1 wins).", 1 <= p1.compareHands(p2));
 	
 		p1.getADice(0).setValue(5);
 		p1.getADice(1).setValue(5);
@@ -125,7 +125,7 @@ public class testGame {
 		p2.getADice(2).setValue(4);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {5, 5, 6} and {6, 6, 4}, expecting -1(player 2 wins).", -1, p1.compareHands(p2));
+		assertTrue("Testing two Players with {5, 5, 6} and {6, 6, 4}, expecting x <= -1(player 2 wins).", -1 >= p1.compareHands(p2));
 	
 		p1.getADice(0).setValue(6);
 		p1.getADice(1).setValue(4);
@@ -141,7 +141,7 @@ public class testGame {
 		p2.getADice(2).setValue(2);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {6, 4, 2} and {6, 4, 2}, expecting 0(draw).", 0, p1.compareHands(p2));
+		assertTrue("Testing two Players with {6, 4, 2} and {6, 4, 2}, expecting x == 0(draw).", 0 == p1.compareHands(p2));
 	
 		p1.getADice(0).setValue(6);
 		p1.getADice(1).setValue(4);
@@ -153,7 +153,7 @@ public class testGame {
 		p2.getADice(2).setValue(2);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {6, 4, 2} and {5, 4, 2}, expecting 1(player 1 wins).", 1, p1.compareHands(p2));
+		assertTrue("Testing two Players with {6, 4, 2} and {5, 4, 2}, expecting x >= 1(player 1 wins).", 1 <= p1.compareHands(p2));
 		
 		p1.getADice(0).setValue(5);
 		p1.getADice(1).setValue(4);
@@ -165,7 +165,7 @@ public class testGame {
 		p2.getADice(2).setValue(2);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {5, 4, 2} and {6, 4, 2}, expecting -1(player 2 wins).", -1, p1.compareHands(p2));
+		assertTrue("Testing two Players with {5, 4, 2} and {6, 4, 2}, expecting x <= -1(player 2 wins).", -1 >= p1.compareHands(p2));
 	
 		p1.getADice(0).setValue(6);
 		p1.getADice(1).setValue(4);
@@ -177,7 +177,7 @@ public class testGame {
 		p2.getADice(2).setValue(2);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {6, 4, 1} and {6, 4, 2}, expecting 0(draw).", 0, p1.compareHands(p2));
+		assertTrue("Testing two Players with {6, 4, 1} and {6, 4, 2}, expecting x == 0(draw).", 0 == p1.compareHands(p2));
 
 		p1.getADice(0).setValue(6);
 		p1.getADice(1).setValue(4);
@@ -189,7 +189,7 @@ public class testGame {
 		p2.getADice(2).setValue(2);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {6, 4, 3} and {6, 4, 2}, expecting 0(draw).", 0, p1.compareHands(p2));
+		assertTrue("Testing two Players with {6, 4, 3} and {6, 4, 2}, expecting x == 0(draw).", 0 == p1.compareHands(p2));
 
 		p1.getADice(0).setValue(6);
 		p1.getADice(1).setValue(3);
@@ -201,7 +201,7 @@ public class testGame {
 		p2.getADice(2).setValue(2);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {6, 3, 2} and {6, 4, 2}, expecting 0(draw).", 0, p1.compareHands(p2));
+		assertTrue("Testing two Players with {6, 3, 2} and {6, 4, 2}, expecting x == 0(draw).", 0 == p1.compareHands(p2));
 
 		p1.getADice(0).setValue(6);
 		p1.getADice(1).setValue(5);
@@ -213,7 +213,7 @@ public class testGame {
 		p2.getADice(2).setValue(2);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {6, 5, 2} and {6, 4, 2}, expecting 0(draw).", 0, p1.compareHands(p2));
+		assertTrue("Testing two Players with {6, 5, 2} and {6, 4, 2}, expecting x == 0(draw).", 0 == p1.compareHands(p2));
 	
 		p1.getADice(0).setValue(6);
 		p1.getADice(1).setValue(4);
@@ -225,7 +225,7 @@ public class testGame {
 		p2.getADice(2).setValue(4);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {6, 4, 2} and {2, 6, 4}, expecting 0(draw).", 0, p1.compareHands(p2));
+		assertTrue("Testing two Players with {6, 4, 2} and {2, 6, 4}, expecting x == 0(draw).", 0 == p1.compareHands(p2));
 	
 		p1.getADice(0).setValue(6);
 		p1.getADice(1).setValue(4);
@@ -237,7 +237,7 @@ public class testGame {
 		p2.getADice(2).setValue(6);
 		p2.determineHand();
 		
-		assertEquals("Testing two Players with {6, 4, 2} and {2, 6, 4}, expecting 0(draw).", 0, p1.compareHands(p2));
+		assertTrue("Testing two Players with {6, 4, 2} and {2, 6, 4}, expecting x == 0(draw).", 0 == p1.compareHands(p2));
 	}
 	
 		@Test

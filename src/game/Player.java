@@ -87,14 +87,14 @@ public class Player {
 			pairValue = dice[1].getValue();
 			highestSingle = dice[0].getValue();
 		}
-		else if(dice[0].compareDice(dice[1]) == 1)
+		else if(dice[0].compareDice(dice[1]) > 0)
 		{
-			if(dice[0].compareDice(dice[2]) == 1)
+			if(dice[0].compareDice(dice[2]) > 0)
 				highestSingle = dice[0].getValue();
 			else
 				highestSingle = dice[2].getValue();
 		}
-		else if(dice[1].compareDice(dice[2]) == 1)
+		else if(dice[1].compareDice(dice[2]) > 0)
 			highestSingle = dice[1].getValue();
 		else 
 			highestSingle = dice[2].getValue();
@@ -102,24 +102,11 @@ public class Player {
 
 	public int compareHands(Player other)
 	{
-		int highest;
-		
-		if(this.rank == other.getRank())
-			if(this.pairValue == other.getPairValue())
-				if(this.highestSingle == other.getHighestSingle())
-					highest = 0;
-				else if(this.highestSingle > other.getHighestSingle())
-					highest = 1;
-				else
-					highest = -1;
-			else if(this.pairValue > other.getPairValue())
-				highest = 1;
-			else highest = -1;
-		else if(this.rank > other.getRank()) 
-			highest = 1;
-		else highest = -1;
-		
-		return highest;
+		if(this.rank != other.getRank())
+			return this.rank - other.getRank();
+		if(this.pairValue != other.getPairValue())
+			return this.pairValue - other.getPairValue();
+		return this.highestSingle - other.getHighestSingle();
 	}
 	
 	public Dice getADice( int index )
