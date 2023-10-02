@@ -15,8 +15,8 @@ public class testGame {
 	@BeforeClass
 	public static void createObjects()
 	{
-		p1 = new Player(3, true);
-		p2 = new Player(3, true);
+		p1 = new ComputerPlayer(3);
+		p2 = new ComputerPlayer(3);
 		roller = new Random();
 	}
 	

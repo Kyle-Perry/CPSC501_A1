@@ -10,17 +10,15 @@ import java.util.Random;
  * 
  */
 
-public class Player {
+public abstract class Player {
 
-	private Dice dice[];
-	private int rank, 
+	protected Dice dice[];
+	protected int rank, 
 	pairValue, 
-	highestSingle;
-	private boolean isHuman;
+	highestSingle;	
 	
-	public Player(int diceNum, boolean isHuman) 
+	public Player(int diceNum) 
 	{
-		this.isHuman = isHuman;
 		this.dice = new Dice[diceNum];
 		for( int i = 0; i < 3; i++)
 		{
@@ -30,7 +28,7 @@ public class Player {
 		this.pairValue = 0;
 		this.highestSingle = 0;
 	}
-
+	
 	public boolean getLockStatus(int index)
 	{
 		return dice[index].getLock();
@@ -137,107 +135,7 @@ public class Player {
 
 	}
 	
-	public boolean getIsHuman() {
-		return isHuman;
-	}
-
-	public void playersTurn(Random roll)
-	{
-		int pairValue = 0;
-		int singleValue = 0;
-		int rank = 0;
-
-		int counter = 0;
-		boolean stay = false;
-		char choice = ' ';
-		int diceSelection = 0;
-
-		this.rollDice(roll);
-
-		if(this.getIsHuman())
-		{
-			while(counter < 2 && !stay)
-			{
-				System.out.println("Number of rolls remaining: " + (2 - counter));
-				Game.displayHand(this);
-				for(int i = 0; i < Game.NUMBER_OF_DICE; i++) {
-					if (getLockStatus(i))
-						System.out.print("LOCKED");
-					else
-						System.out.print("      ");
-					System.out.print("  ");
-
-				}
-				System.out.println("  ");
-
-				Game.displayMenu();
-				choice = Game.readChar("Please input a selection: ");
-				switch(choice)
-				{
-				case 'R': case'r':
-					rollDice(roll);
-					counter++;
-					break;
-				case 'L': case'l':
-					diceSelection = Game.readInt("Enter the dice to be locked (1-3): ");
-					while(diceSelection < 1 || diceSelection > 3)
-					{
-						System.out.println("Number outside of accepted range.");
-						diceSelection = Game.readInt("Enter the dice to be locked (1-3): ");	
-					}
-					setLock(diceSelection - 1, !getLockStatus(diceSelection - 1));
-					break;
-				case 'S': case's':
-					stay = true;
-					break;
-				default:
-					System.out.println("Invalid selection.");
-					break;
-				}
-			}
-
-
-		}
-		else
-		{
-			determineHand();
-			pairValue = getPairValue();
-			singleValue = getHighestSingle();
-			rank = getRank();
-
-			while(counter < 2) {
-				if(rank == 2)
-				{
-					for(int x = 0; x < Game.NUMBER_OF_DICE; x++) {
-						if(getADice(x).getValue() == pairValue)
-							setLock(x, true);
-					}
-				}
-				if(rank == 1)
-				{
-					if(pairValue > 3) {
-						for(int x = 0; x < Game.NUMBER_OF_DICE; x++) {
-							if(getADice(x).getValue() == pairValue)
-								setLock(x, true);
-						}
-					}
-				}
-				else if(singleValue > 4) {
-					for(int x = 0; x < Game.NUMBER_OF_DICE; x++) {
-						if(getADice(x).getValue() == singleValue)
-							setLock(x, true);
-					}
-				}
-
-				rollDice(roll);	
-				counter++;
-			}
-		}
-
-		determineHand();
-		System.out.println("Your hand is: " + "{" + getADice(0).getValue() + ", " + getADice(1).getValue() + ", " + getADice(2).getValue() + "}");
-		System.out.println();
-	}
+	public abstract void playersTurn(Random roll);
 
 
 }

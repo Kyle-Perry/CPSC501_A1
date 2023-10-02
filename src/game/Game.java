@@ -21,8 +21,8 @@ public class Game {
 	public Game()
 	{
 		player = new Player[2];
-		player[0]= new Player(NUMBER_OF_DICE, false);
-		player[1]= new Player(NUMBER_OF_DICE, true);
+		player[0]= new ComputerPlayer(NUMBER_OF_DICE);
+		player[1]= new HumanPlayer(NUMBER_OF_DICE);
 	}
 
 	public static void main(String[] args) {
@@ -32,7 +32,7 @@ public class Game {
 
 		System.out.println("Player 1's Turn.");
 		game.getPlayer(0).playersTurn(roll);
-		System.out.println("Player 2's Turn.");		
+		System.out.println("\nPlayer 2's Turn.");		
 		game.getPlayer(1).playersTurn(roll);
 		game.determineWinner();
 	}
