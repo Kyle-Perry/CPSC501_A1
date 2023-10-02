@@ -52,7 +52,7 @@ public class Player {
 	{
 		for( int i = 0; i < 3; i++)
 			if(!dice[i].getLock())
-				dice[i].setValue((roll.nextInt(6) + 1));
+				dice[i].setValue((roll.nextInt(Dice.NUMBER_OF_SIDES) + 1));
 	}
 
 	public void setLock(int diceSelected, boolean lockValue)

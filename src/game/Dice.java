@@ -8,7 +8,8 @@ public class Dice {
 
 	private int value;
 	private boolean isLocked;
-
+	public static final int NUMBER_OF_SIDES = 6;
+	
 	public Dice ()
 	{
 		value = 0;
