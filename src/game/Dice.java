@@ -4,6 +4,8 @@
  */
 package game;
 
+import java.util.Random;
+
 public class Dice {
 
 	private int value;
@@ -32,6 +34,11 @@ public class Dice {
 	
 	public boolean getLock() {
 		return isLocked;
+	}
+	
+	public void roll(Random roll) {
+		if(!isLocked)
+			value = roll.nextInt(Dice.NUMBER_OF_SIDES) + 1;
 	}
 	
 	public int compareDice(Dice other)

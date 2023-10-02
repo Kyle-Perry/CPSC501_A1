@@ -51,8 +51,7 @@ public class Player {
 	public void rollDice(Random roll)
 	{
 		for( int i = 0; i < 3; i++)
-			if(!dice[i].getLock())
-				dice[i].setValue((roll.nextInt(Dice.NUMBER_OF_SIDES) + 1));
+			dice[i].roll(roll);
 	}
 
 	public void setLock(int diceSelected, boolean lockValue)

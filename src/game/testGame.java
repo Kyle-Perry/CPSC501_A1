@@ -256,12 +256,28 @@ public class testGame {
 			Dice dice = p1.getADice(0);
 			dice.setValue(0);
 			p1.setLock(0, true);
-			p1.rollDice(roller);
 			
 			for(int x = 0; x < 1000; x++) {
+				p1.rollDice(roller);
 				assertTrue("Testing if locked die value is the same", (dice.getValue() == 0));
 			}
 			p1.setLock(0, false);
 		}
 		
+		@Test
+		public void testUnlock() {
+			Dice dice = p1.getADice(0);
+			dice.setValue(0);
+			dice.setLock(true);
+
+			
+			for(int x = 0; x < 1000; x++) {
+				dice.setLock(false);
+				p1.rollDice(roller);
+				assertTrue("Testing if unlocked die value is not the same", (dice.getValue() != 0));
+				dice.setLock(true);
+				dice.setValue(0);
+			}
+			p1.setLock(0, false);
+		}
 }
