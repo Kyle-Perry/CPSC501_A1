@@ -30,18 +30,20 @@ public class Game {
 		Random roll = new Random();
 		Game game = new Game();
 
-		game.playersTurn(0, roll);
-		game.playersTurn(1, roll);
+		System.out.println("Player 1's Turn.");
+		game.getPlayer(0).playersTurn(roll);
+		System.out.println("Player 2's Turn.");		
+		game.getPlayer(1).playersTurn(roll);
 		game.determineWinner();
 	}
 
-	public void displayHand(int playerNumber)
+	public static void displayHand(Player player)
 	{
-		player[playerNumber].printDice();
+		player.printDice();
 
 	}
 
-	public void displayMenu()
+	public static void displayMenu()
 	{
 		System.out.println("Options: ");
 		System.out.println();
@@ -51,7 +53,7 @@ public class Game {
 		System.out.println();
 	}
 
-	public char readChar(String message)
+	public static char readChar(String message)
 	{
 		char aChar = 0;
 		Scanner readUser = new Scanner(System.in);
@@ -64,107 +66,8 @@ public class Game {
 		return aChar;
 	}
 
-	public void playersTurn(int playerNo, Random roll)
-	{
-		int pairValue = 0;
-		int singleValue = 0;
-		int rank = 0;
-
-		int counter = 0;
-		boolean stay = false;
-		char choice = ' ';
-		int diceSelection = 0;
-
-		player[playerNo].rollDice(roll);
-		System.out.println("Player " + (playerNo + 1) + "'s Turn.");
-
-		if(player[playerNo].getIsHuman())
-		{
-			while(counter < 2 && !stay)
-			{
-				System.out.println("Number of rolls remaining: " + (2 - counter));
-				displayHand(playerNo);
-				for(int i = 0; i < NUMBER_OF_DICE; i++) {
-					if (player[playerNo].getLockStatus(i))
-						System.out.print("LOCKED");
-					else
-						System.out.print("      ");
-					System.out.print("  ");
-
-				}
-				System.out.println("  ");
-
-				displayMenu();
-				choice = readChar("Please input a selection: ");
-				switch(choice)
-				{
-				case 'R': case'r':
-					player[playerNo].rollDice(roll);
-					counter++;
-					break;
-				case 'L': case'l':
-					diceSelection = readInt("Enter the dice to be locked (1-3): ");
-					while(diceSelection < 1 || diceSelection > 3)
-					{
-						System.out.println("Number outside of accepted range.");
-						diceSelection = readInt("Enter the dice to be locked (1-3): ");	
-					}
-					player[playerNo].setLock(diceSelection - 1, !player[playerNo].getLockStatus(diceSelection - 1));
-					break;
-				case 'S': case's':
-					stay = true;
-					break;
-				default:
-					System.out.println("Invalid selection.");
-					break;
-				}
-			}
-
-
-		}
-		else
-		{
-			player[playerNo].determineHand();
-			pairValue = player[playerNo].getPairValue();
-			singleValue = player[playerNo].getHighestSingle();
-			rank = player[playerNo].getRank();
-
-			while(counter < 2) {
-				if(rank == 2)
-				{
-					for(int x = 0; x < NUMBER_OF_DICE; x++) {
-						if(player[playerNo].getADice(x).getValue() == pairValue)
-							player[playerNo].setLock(x, true);
-					}
-				}
-				if(rank == 1)
-				{
-					if(pairValue > 3) {
-						for(int x = 0; x < NUMBER_OF_DICE; x++) {
-							if(player[playerNo].getADice(x).getValue() == pairValue)
-								player[playerNo].setLock(x, true);
-						}
-					}
-				}
-				else if(singleValue > 4) {
-					for(int x = 0; x < NUMBER_OF_DICE; x++) {
-						if(player[playerNo].getADice(x).getValue() == singleValue)
-							player[playerNo].setLock(x, true);
-					}
-				}
-
-				player[playerNo].rollDice(roll);	
-				counter++;
-			}
-		}
-
-		player[playerNo].determineHand();
-		System.out.println("Your hand is: " + "{" + player[playerNo].getADice(0).getValue() + ", " + player[playerNo].getADice(1).getValue() + ", " + player[playerNo].getADice(2).getValue() + "}");
-		System.out.println();
-	}
-
-
-	public int readInt(String message)
+	
+	public static int readInt(String message)
 	{
 		int anInt = 0;
 		boolean success = false;
@@ -199,9 +102,9 @@ public class Game {
 
 		System.out.println();
 
-		displayHand(0);
+		displayHand(player[0]);
 		System.out.println("\n\tVS.\n");
-		displayHand(1);
+		displayHand(player[1]);
 
 		System.out.println("\n");
 
@@ -213,5 +116,9 @@ public class Game {
 			System.out.println("It's a draw!");
 
 	}	
-
+	
+	public Player getPlayer(int playerNo) {
+		return player[playerNo];
+	}
+	
 }
