@@ -16,28 +16,24 @@ public class Player {
 	private int rank, 
 	pairValue, 
 	highestSingle;
-	private boolean lock[];
 	private boolean isHuman;
 	
 	public Player(int diceNum, boolean isHuman) 
 	{
 		this.isHuman = isHuman;
 		this.dice = new Dice[diceNum];
-		this.lock = new boolean[diceNum];
 		for( int i = 0; i < 3; i++)
 		{
-			
 			this.dice[i] = new Dice();
-			this.lock[1] = false;
 		}
 		this.rank = 0;
 		this.pairValue = 0;
 		this.highestSingle = 0;
 	}
 
-	public boolean getLock(int index)
+	public boolean getLockStatus(int index)
 	{
-		return lock[index];
+		return dice[index].getLock();
 	}
 	
 	public int getRank() {
@@ -55,13 +51,13 @@ public class Player {
 	public void rollDice(Random roll)
 	{
 		for( int i = 0; i < 3; i++)
-			if(!lock[i])
+			if(!dice[i].getLock())
 				dice[i].setValue((roll.nextInt(6) + 1));
 	}
 
 	public void setLock(int diceSelected, boolean lockValue)
 	{
-		lock[diceSelected] = lockValue;
+		dice[diceSelected].setLock(lockValue);
 	}
 	
 	public void determineHand()

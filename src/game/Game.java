@@ -85,7 +85,7 @@ public class Game {
 				System.out.println("Number of rolls remaining: " + (2 - counter));
 				displayHand(playerNo);
 				for(int i = 0; i < NUMBER_OF_DICE; i++) {
-					if (player[playerNo].getLock(i))
+					if (player[playerNo].getLockStatus(i))
 						System.out.print("LOCKED");
 					else
 						System.out.print("      ");
@@ -109,7 +109,7 @@ public class Game {
 						System.out.println("Number outside of accepted range.");
 						diceSelection = readInt("Enter the dice to be locked (1-3): ");	
 					}
-					player[playerNo].setLock(diceSelection - 1, !player[playerNo].getLock(diceSelection - 1));
+					player[playerNo].setLock(diceSelection - 1, !player[playerNo].getLockStatus(diceSelection - 1));
 					break;
 				case 'S': case's':
 					stay = true;

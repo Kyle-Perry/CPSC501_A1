@@ -7,10 +7,12 @@ package game;
 public class Dice {
 
 	private int value;
-	
+	private boolean isLocked;
+
 	public Dice ()
 	{
-		value = 1;
+		value = 0;
+		isLocked = false;
 	}
 	
 	public int getValue()
@@ -21,6 +23,14 @@ public class Dice {
 	public void setValue(int newValue)
 	{
 		value = newValue;
+	}
+	
+	public void setLock(boolean lockStatus) {
+		isLocked = lockStatus;
+	}
+	
+	public boolean getLock() {
+		return isLocked;
 	}
 	
 	public int compareDice(Dice other)
