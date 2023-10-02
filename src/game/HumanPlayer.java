@@ -32,8 +32,8 @@ public class HumanPlayer extends Player{
 				}
 				System.out.println("  ");
 
-				Game.displayMenu();
-				choice = Game.readChar("Please input a selection: ");
+				GameInterface.displayMenu();
+				choice = GameInterface.readChar("Please input a selection: ");
 				switch(choice)
 				{
 				case 'R': case'r':
@@ -41,11 +41,11 @@ public class HumanPlayer extends Player{
 					counter++;
 					break;
 				case 'L': case'l':
-					diceSelection = Game.readInt("Enter the dice to be locked (1-3): ");
+					diceSelection = GameInterface.readInt("Enter the dice to be locked (1-3): ");
 					while(diceSelection < 1 || diceSelection > 3)
 					{
 						System.out.println("Number outside of accepted range.");
-						diceSelection = Game.readInt("Enter the dice to be locked (1-3): ");	
+						diceSelection = GameInterface.readInt("Enter the dice to be locked (1-3): ");	
 					}
 					setLock(diceSelection - 1, !getLockStatus(diceSelection - 1));
 					break;

@@ -39,58 +39,7 @@ public class Game {
 
 	public static void displayHand(Player player)
 	{
-		player.printDice();
-
-	}
-
-	public static void displayMenu()
-	{
-		System.out.println("Options: ");
-		System.out.println();
-		System.out.println("(R)oll Hand");
-		System.out.println("(L)ock Dice");
-		System.out.println("(S)tay");
-		System.out.println();
-	}
-
-	public static char readChar(String message)
-	{
-		char aChar = 0;
-		Scanner readUser = new Scanner(System.in);
-
-		System.out.print(message);
-		aChar = readUser.next().charAt(0);
-		System.out.println();
-		System.out.println();
-
-		return aChar;
-	}
-
-	
-	public static int readInt(String message)
-	{
-		int anInt = 0;
-		boolean success = false;
-		Scanner readUser = new Scanner(System.in);
-
-		while(!success)
-		{
-			System.out.print(message);
-			if(readUser.hasNextInt())
-			{
-				success = true;
-				anInt = readUser.nextInt();
-				System.out.println();
-			}
-			else
-			{
-				System.out.println();
-				System.out.println("Invalid input.");
-				readUser.next();
-			}
-		}
-
-		return anInt;
+		GameInterface.printDice(player.getAllDice());
 	}
 
 	public void determineWinner()

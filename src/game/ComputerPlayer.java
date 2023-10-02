@@ -50,7 +50,7 @@ public class ComputerPlayer extends Player{
 			counter++;
 		}
 		System.out.println("Computer Rolled: \n\n");
-		printDice();
+		GameInterface.printDice(this.dice);
 	}
 
 }

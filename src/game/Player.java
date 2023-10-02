@@ -111,28 +111,8 @@ public abstract class Player {
 		return dice[index];
 	}
 	
-	public void printDice() {
-		for(int x = 0; x < dice.length; x++){
-			System.out.print(" -----    ");
-		}
-		System.out.println();
-		for(Dice aDice: dice){
-			System.out.print(aDice.printFirst() + "   ");
-		}
-		System.out.println();
-		for(Dice aDice: dice){
-			System.out.print(aDice.printSecond() + "   ");
-		}
-		System.out.println();
-		for(Dice aDice: dice){
-			System.out.print(aDice.printThird() + "   ");
-		}
-		System.out.println();
-		for(int x = 0; x < dice.length; x++){
-			System.out.print(" -----    ");
-		}
-		System.out.println();
-
+	public Dice[] getAllDice() {
+		return dice;
 	}
 	
 	public abstract void playersTurn(Random roll);
