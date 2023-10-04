@@ -49,6 +49,8 @@ public class ComputerPlayer extends Player{
 			rollDice(roll);	
 			counter++;
 		}
+		
+		determineHand();
 		System.out.println("Computer Rolled: \n\n");
 		GameInterface.printDice(this.dice);
 	}

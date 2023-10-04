@@ -23,13 +23,13 @@ public class HumanPlayer extends Player{
 				Game.displayHand(this);
 				for(int i = 0; i < Game.NUMBER_OF_DICE; i++) {
 					if (getLockStatus(i))
-						System.out.print("LOCKED");
+						System.out.print("LOCKED ");
 					else
-						System.out.print("      ");
-					System.out.print("  ");
+						System.out.print("       ");
+					System.out.print("   ");
 
 				}
-				System.out.println("  ");
+				System.out.println();
 
 				GameInterface.displayMenu();
 				choice = GameInterface.readChar("Please input a selection: ");
@@ -49,6 +49,9 @@ public class HumanPlayer extends Player{
 					setLock(diceSelection - 1, !getLockStatus(diceSelection - 1));
 					break;
 				case 'S': case's':
+					determineHand();
+					System.out.println("Your hand is: " + "{" + getADice(0).getValue() + ", " + getADice(1).getValue() + ", " + getADice(2).getValue() + "}");
+					System.out.println();
 					return;
 				default:
 					System.out.println("Invalid selection.");
