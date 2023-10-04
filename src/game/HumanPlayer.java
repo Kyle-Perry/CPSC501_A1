@@ -13,12 +13,11 @@ public class HumanPlayer extends Player{
 	{
 
 		int counter = 0;
-		boolean stay = false;
 		char choice = ' ';
 		int diceSelection = 0;
 
 		this.rollDice(roll);
-		while(counter < 2 && !stay)
+		while(counter < 2)
 			{
 				System.out.println("Number of rolls remaining: " + (2 - counter));
 				Game.displayHand(this);
@@ -50,8 +49,7 @@ public class HumanPlayer extends Player{
 					setLock(diceSelection - 1, !getLockStatus(diceSelection - 1));
 					break;
 				case 'S': case's':
-					stay = true;
-					break;
+					return;
 				default:
 					System.out.println("Invalid selection.");
 					break;
