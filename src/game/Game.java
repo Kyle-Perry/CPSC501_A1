@@ -17,7 +17,9 @@ import java.util.Scanner;
 public class Game {
 
 	private Player[] player;
-	public static final int NUMBER_OF_DICE = 3;
+	public static final int NUMBER_OF_DICE = 3, SINGLE = 0, PAIR = 1, THREE_OF_A_KIND = 2;
+	
+	
 	public Game()
 	{
 		player = new Player[2];

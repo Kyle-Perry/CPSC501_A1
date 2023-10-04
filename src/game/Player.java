@@ -59,28 +59,28 @@ public abstract class Player {
 	
 	public void determineHand()
 	{
-		rank = 0;
+		rank = Game.SINGLE;
 		pairValue = 0; 
 		if(dice[0].compareDice(dice[1]) == 0)
 		{
-			rank = 1;
+			rank = Game.PAIR;
 			pairValue = dice[0].getValue();
 			highestSingle = dice[2].getValue();
 			if(highestSingle == pairValue){	
-				rank = 2;
+				rank = Game.THREE_OF_A_KIND;
 				highestSingle = 0;
 			}
 			
 		}
 		else if(dice[0].compareDice(dice[2]) == 0)
 		{
-			rank = 1;
+			rank = Game.PAIR;
 			pairValue = dice[0].getValue();
 			highestSingle = dice[1].getValue();
 		}
 		else if(dice[1].compareDice(dice[2]) == 0)
 		{
-			rank = 1;
+			rank = Game.PAIR;
 			pairValue = dice[1].getValue();
 			highestSingle = dice[0].getValue();
 		}
