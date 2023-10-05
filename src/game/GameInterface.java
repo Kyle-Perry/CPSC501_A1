@@ -54,6 +54,10 @@ public class GameInterface {
 		System.out.println();
 	}
 	
+	public static void displayMessage(String message) {
+		System.out.print(message);
+	}
+	
 	public static void printDice(Dice[] dice) {
 		for(int x = 0; x < dice.length; x++){
 			System.out.print(" -----    ");
@@ -76,6 +80,18 @@ public class GameInterface {
 		}
 		System.out.println();
 
+	}
+	
+	public static void printLockStatus(Dice[] dice) {
+		for(int i = 0; i < Game.NUMBER_OF_DICE; i++) {
+			if (dice[i].getLock())
+				System.out.print("LOCKED ");
+			else
+				System.out.print("       ");
+			System.out.print("   ");
+
+		}
+		System.out.println();
 	}
 	
 	private static String printDiceFirst(Dice dice) {

@@ -19,17 +19,9 @@ public class HumanPlayer extends Player{
 		this.rollDice(roll);
 		while(counter < 2)
 			{
-				System.out.println("Number of rolls remaining: " + (2 - counter));
+				GameInterface.displayMessage("Number of rolls remaining: " + (2 - counter)+ "\n\n");
 				Game.displayHand(this);
-				for(int i = 0; i < Game.NUMBER_OF_DICE; i++) {
-					if (getLockStatus(i))
-						System.out.print("LOCKED ");
-					else
-						System.out.print("       ");
-					System.out.print("   ");
-
-				}
-				System.out.println();
+				GameInterface.printLockStatus(dice);
 
 				GameInterface.displayMenu();
 				choice = GameInterface.readChar("Please input a selection: ");
@@ -43,25 +35,23 @@ public class HumanPlayer extends Player{
 					diceSelection = GameInterface.readInt("Enter the dice to be locked (1-3): ");
 					while(diceSelection < 1 || diceSelection > 3)
 					{
-						System.out.println("Number outside of accepted range.");
+						GameInterface.displayMessage("Number outside of accepted range.\n");
 						diceSelection = GameInterface.readInt("Enter the dice to be locked (1-3): ");	
 					}
 					setLock(diceSelection - 1, !getLockStatus(diceSelection - 1));
 					break;
 				case 'S': case's':
 					determineHand();
-					System.out.println("Your hand is: " + "{" + getADice(0).getValue() + ", " + getADice(1).getValue() + ", " + getADice(2).getValue() + "}");
-					System.out.println();
+					GameInterface.displayMessage("Your hand is: " + "{" + getADice(0).getValue() + ", " + getADice(1).getValue() + ", " + getADice(2).getValue() + "}\n\n");
 					return;
 				default:
-					System.out.println("Invalid selection.");
+					GameInterface.displayMessage("Invalid selection.\n");
 					break;
 				}
 			}
 
 		determineHand();
-		System.out.println("Your hand is: " + "{" + getADice(0).getValue() + ", " + getADice(1).getValue() + ", " + getADice(2).getValue() + "}");
-		System.out.println();
+		GameInterface.displayMessage("Your hand is: " + "{" + getADice(0).getValue() + ", " + getADice(1).getValue() + ", " + getADice(2).getValue() + "}\n\n");
 	}
 
 }
