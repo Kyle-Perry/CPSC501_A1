@@ -61,42 +61,56 @@ public abstract class Player {
 	{
 		rank = Game.SINGLE;
 		pairValue = 0; 
-		if(dice[0].compareDice(dice[1]) == 0)
+		if(hasThreeKind())
 		{
-			rank = Game.PAIR;
-			pairValue = dice[0].getValue();
-			highestSingle = dice[2].getValue();
-			if(highestSingle == pairValue){	
-				rank = Game.THREE_OF_A_KIND;
-				highestSingle = 0;
-			}
-			
+			setHandValues(Game.THREE_OF_A_KIND, 0, dice[0].getValue());
+			return;
 		}
-		else if(dice[0].compareDice(dice[2]) == 0)
+		if(isPair(dice[0], dice[1]))
 		{
-			rank = Game.PAIR;
-			pairValue = dice[0].getValue();
-			highestSingle = dice[1].getValue();
+			setHandValues(Game.PAIR, dice[2].getValue(),dice[0].getValue());
+			return;
 		}
-		else if(dice[1].compareDice(dice[2]) == 0)
+		if(isPair(dice[0], dice[2]))
 		{
-			rank = Game.PAIR;
-			pairValue = dice[1].getValue();
-			highestSingle = dice[0].getValue();
+			setHandValues(Game.PAIR, dice[1].getValue(),dice[0].getValue());
+			return;
 		}
-		else if(dice[0].compareDice(dice[1]) > 0)
+		if(isPair(dice[1], dice[2]))
 		{
-			if(dice[0].compareDice(dice[2]) > 0)
-				highestSingle = dice[0].getValue();
-			else
-				highestSingle = dice[2].getValue();
+			setHandValues(Game.PAIR, dice[0].getValue(),dice[1].getValue());
+			return;
 		}
-		else if(dice[1].compareDice(dice[2]) > 0)
-			highestSingle = dice[1].getValue();
-		else 
-			highestSingle = dice[2].getValue();
+		highestSingle = findHighestSingle(dice);
+		
 	}
 
+	private void setHandValues(int rank, int highestSingle, int pairValue) {
+		this.rank = rank;
+		this.highestSingle = highestSingle;
+		this.pairValue = pairValue;
+	}
+	
+	
+	private boolean hasThreeKind() {
+		return dice[0].compareDice(dice[1]) == 0 && dice[0].compareDice(dice[2]) == 0;
+	}
+	
+	private boolean isPair(Dice d1, Dice d2) {
+		return d1.compareDice(d2) == 0;
+	}
+	
+	private int findHighestSingle(Dice[] dice) {
+		int highest = dice[0].getValue();
+		for(Dice current: dice) {
+			if(current.getValue() > highest)
+				highest = current.getValue();
+		}
+		
+		return highest;
+	}
+	
+	
 	public int compareHands(Player other)
 	{
 		if(this.rank != other.getRank())
