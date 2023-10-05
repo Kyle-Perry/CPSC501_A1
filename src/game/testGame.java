@@ -55,7 +55,19 @@ public class testGame {
 		assertEquals("Testing hand {3,6,3}, expecting pair value = 3", 3, p1.getPairValue());
 		assertEquals("Testing hand {3,6,3}, expecting highest single = 6", 6, p1.getHighestSingle());
 	}
-
+	
+	@Test
+	public void testPairDice2and3()
+	{
+		p1.getADice(0).setValue(2);
+		p1.getADice(1).setValue(3);
+		p1.getADice(2).setValue(3);
+		p1.determineHand();
+		assertEquals("Testing hand {2,3,3}, expecting rank = Game.PAIR", Game.PAIR, p1.getRank());
+		assertEquals("Testing hand {2,3,3}, expecting pair value = 3", 3, p1.getPairValue());
+		assertEquals("Testing hand {2,3,3}, expecting highest single = 2", 2, p1.getHighestSingle());
+	}
+	
 	@Test
 	public void testSingle123()
 	{
