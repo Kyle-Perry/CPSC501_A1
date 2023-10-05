@@ -23,14 +23,14 @@ public class ComputerPlayer extends Player{
 		rank = getRank();
 
 		while(counter < 2) {
-			if(rank == 2)
+			if(rank == Game.THREE_OF_A_KIND)
 			{
 				for(int x = 0; x < Game.NUMBER_OF_DICE; x++) {
 					if(getADice(x).getValue() == pairValue)
 						setLock(x, true);
 				}
 			}
-			if(rank == 1)
+			if(rank == Game.PAIR)
 			{
 				if(pairValue > 3) {
 					for(int x = 0; x < Game.NUMBER_OF_DICE; x++) {
@@ -49,10 +49,6 @@ public class ComputerPlayer extends Player{
 			rollDice(roll);	
 			counter++;
 		}
-		
-		determineHand();
-		System.out.println("Computer Rolled: \n\n");
-		GameInterface.printDice(this.dice);
 	}
 
 }

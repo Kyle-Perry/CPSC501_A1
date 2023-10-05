@@ -16,12 +16,12 @@ import java.util.Random;
 public class Game {
 
 	private Player[] player;
-	public static final int NUMBER_OF_DICE = 3, SINGLE = 0, PAIR = 1, THREE_OF_A_KIND = 2;
+	public static final int NUMBER_OF_PLAYERS = 2, NUMBER_OF_DICE = 3, SINGLE = 0, PAIR = 1, THREE_OF_A_KIND = 2;
 	
 	
 	public Game()
 	{
-		player = new Player[2];
+		player = new Player[NUMBER_OF_PLAYERS];
 		player[0]= new ComputerPlayer(NUMBER_OF_DICE);
 		player[1]= new HumanPlayer(NUMBER_OF_DICE);
 	}
@@ -30,11 +30,17 @@ public class Game {
 		// TODO Auto-generated method stub
 		Random roll = new Random();
 		Game game = new Game();
-
-		System.out.println("Player 1's Turn.");
-		game.getPlayer(0).playersTurn(roll);
-		System.out.println("\nPlayer 2's Turn.");		
-		game.getPlayer(1).playersTurn(roll);
+		int playerNo = 1;
+		
+		for(Player player: game.getPlayera())
+		{
+			GameInterface.displayMessage("Player " + playerNo + "'s Turn.\n");
+			player.playersTurn(roll);
+			player.determineHand();
+			GameInterface.displayMessage("Player " + playerNo + "'s hand is: \n\n");
+			GameInterface.printDice(player.getAllDice());
+			playerNo++;
+		}
 		game.determineWinner();
 	}
 
@@ -50,25 +56,25 @@ public class Game {
 
 		winner = player[0].compareHands(player[1]);
 
-		System.out.println();
+		GameInterface.displayMessage("FINAL RESULTS\n");
 
 		displayHand(player[0]);
-		System.out.println("\n\tVS.\n");
+		GameInterface.displayMessage("\t   VS.\n\n");
 		displayHand(player[1]);
 
-		System.out.println("\n");
+		GameInterface.displayMessage("\n");
 
 		if(winner > 0)
-			System.out.println("Player 1 wins!");
+			GameInterface.displayMessage("Player 1 wins!");
 		else if(winner < 0)
-			System.out.println("Player 2 wins!");
+			GameInterface.displayMessage("Player 2 wins!");
 		else
-			System.out.println("It's a draw!");
+			GameInterface.displayMessage("It's a draw!");
 
 	}	
 	
-	public Player getPlayer(int playerNo) {
-		return player[playerNo];
+	public Player[] getPlayera() {
+		return player;
 	}
 	
 }

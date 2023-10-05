@@ -78,7 +78,7 @@ public class GameInterface {
 		for(int x = 0; x < dice.length; x++){
 			System.out.print(" -----    ");
 		}
-		System.out.println();
+		System.out.println("\n");
 
 	}
 	

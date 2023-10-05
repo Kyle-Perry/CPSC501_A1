@@ -34,17 +34,12 @@ public class HumanPlayer extends Player{
 					lockDice();
 					break;
 				case 'S': case's':
-					determineHand();
-					GameInterface.displayMessage("Your hand is: " + "{" + getADice(0).getValue() + ", " + getADice(1).getValue() + ", " + getADice(2).getValue() + "}\n\n");
 					return;
 				default:
 					GameInterface.displayMessage("Invalid selection.\n");
 					break;
 				}
 			}
-
-		determineHand();
-		GameInterface.displayMessage("Your hand is: " + "{" + getADice(0).getValue() + ", " + getADice(1).getValue() + ", " + getADice(2).getValue() + "}\n\n");
 	}
 
 	public void lockDice() {

@@ -21,7 +21,115 @@ public class testGame {
 	}
 	
 	@Test
-	public void testCompareHands()
+	public void testThreeOfAKind()
+	{
+		p1.getADice(0).setValue(5);
+		p1.getADice(1).setValue(5);
+		p1.getADice(2).setValue(5);
+		p1.determineHand();
+		assertEquals("Testing hand {5,5,5}, expecting rank = Game.THREE_OF_A_KIND", Game.THREE_OF_A_KIND, p1.getRank());
+		assertEquals("Testing hand {5,5,5}, expecting pair value = 5", 5, p1.getPairValue());
+		assertEquals("Testing hand {5,5,5}, expecting highest single = 0", 0, p1.getHighestSingle());
+	}
+	
+	@Test
+	public void testPairDice1and2()
+	{
+		p1.getADice(0).setValue(4);
+		p1.getADice(1).setValue(4);
+		p1.getADice(2).setValue(1);
+		p1.determineHand();
+		assertEquals("Testing hand {4,4,1}, expecting rank = Game.PAIR", Game.PAIR, p1.getRank());
+		assertEquals("Testing hand {4,4,1}, expecting pair value = 4", 4, p1.getPairValue());
+		assertEquals("Testing hand {4,4,1}, expecting highest single = 4", 1, p1.getHighestSingle());
+	}
+	
+	@Test
+	public void testPairDice1and3()
+	{
+		p1.getADice(0).setValue(3);
+		p1.getADice(1).setValue(6);
+		p1.getADice(2).setValue(3);
+		p1.determineHand();
+		assertEquals("Testing hand {3,6,3}, expecting rank = Game.PAIR", Game.PAIR, p1.getRank());
+		assertEquals("Testing hand {3,6,3}, expecting pair value = 3", 3, p1.getPairValue());
+		assertEquals("Testing hand {3,6,3}, expecting highest single = 6", 6, p1.getHighestSingle());
+	}
+	
+	@Test
+	public void testSingle123()
+	{
+		p1.getADice(0).setValue(6);
+		p1.getADice(1).setValue(4);
+		p1.getADice(2).setValue(2);
+		p1.determineHand();
+		assertEquals("Testing hand {6,4,2}, expecting rank = Game.SINGLE", Game.SINGLE, p1.getRank());
+		assertEquals("Testing hand {6,4,2}, expecting pair value = 0", 0, p1.getPairValue());
+		assertEquals("Testing hand {6,4,2}, expecting highest single = 6", 6, p1.getHighestSingle());
+	}	
+	
+	@Test
+	public void testSingle132()
+	{
+		p1.getADice(0).setValue(5);
+		p1.getADice(1).setValue(1);
+		p1.getADice(2).setValue(3);
+		p1.determineHand();
+		assertEquals("Testing hand {5,1,3}, expecting rank = Game.SINGLE", Game.SINGLE, p1.getRank());
+		assertEquals("Testing hand {5,1,3}, expecting pair value = 0", 0, p1.getPairValue());
+		assertEquals("Testing hand {5,1,3}, expecting highest single = 5", 5, p1.getHighestSingle());
+	}
+	
+	@Test
+	public void testSingle213()
+	{
+		p1.getADice(0).setValue(4);
+		p1.getADice(1).setValue(5);
+		p1.getADice(2).setValue(3);
+		p1.determineHand();
+		assertEquals("Testing hand {4,5,3}, expecting rank = Game.SINGLE", Game.SINGLE, p1.getRank());
+		assertEquals("Testing hand {4,5,3}, expecting pair value = 0", 0, p1.getPairValue());
+		assertEquals("Testing hand {4,5,3}, expecting highest single = 5", 5, p1.getHighestSingle());
+	}
+	
+	@Test
+	public void testSingle231()
+	{
+		p1.getADice(0).setValue(2);
+		p1.getADice(1).setValue(4);
+		p1.getADice(2).setValue(3);
+		p1.determineHand();
+		assertEquals("Testing hand {2,4,3}, expecting rank = Game.SINGLE", Game.SINGLE, p1.getRank());
+		assertEquals("Testing hand {2,4,3}, expecting pair value = 0", 0, p1.getPairValue());
+		assertEquals("Testing hand {2,4,3}, expecting highest single = 4", 4, p1.getHighestSingle());
+	}
+	
+	@Test
+	public void testSingle312()
+	{
+		p1.getADice(0).setValue(5);
+		p1.getADice(1).setValue(4);
+		p1.getADice(2).setValue(6);
+		p1.determineHand();
+		assertEquals("Testing hand {5,4,6}, expecting rank = Game.SINGLE", Game.SINGLE, p1.getRank());
+		assertEquals("Testing hand {5,4,6}, expecting pair value = 0", 0, p1.getPairValue());
+		assertEquals("Testing hand {5,4,6}, expecting highest single = 6", 6, p1.getHighestSingle());
+	}
+	
+	@Test
+	public void testSingle321()
+	{
+		p1.getADice(0).setValue(1);
+		p1.getADice(1).setValue(2);
+		p1.getADice(2).setValue(3);
+		p1.determineHand();
+		assertEquals("Testing hand {1,2,3}, expecting rank = Game.SINGLE", Game.SINGLE, p1.getRank());
+		assertEquals("Testing hand {1,2,3}, expecting pair value = 0", 0, p1.getPairValue());
+		assertEquals("Testing hand {1,2,3}, expecting highest single = 3", 3, p1.getHighestSingle());
+	}
+	
+	@Test
+	public void testCompareHands1()
 	{
 		p1.getADice(0).setValue(5);
 		p1.getADice(1).setValue(5);
